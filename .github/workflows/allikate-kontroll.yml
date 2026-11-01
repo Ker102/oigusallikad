@@ -1,0 +1,20 @@
+# Igapäevane kontroll päris allikate vastu. Kui Riigi Teataja, Riigikohus või
+# EUR-Lex muudab struktuuri, see töövoog ebaõnnestub ja GitHub teavitab
+# hoidla jälgijaid. Nii ei jää muutus märkamata.
+name: allikate-kontroll
+on:
+  schedule:
+    - cron: "17 5 * * *" # iga päev 05:17 UTC
+  workflow_dispatch:
+jobs:
+  kontroll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: sudo apt-get install -y poppler-utils
+      - run: go build -o oigusallikad ./cmd/oigusallikad
+      - name: Kanaarilinnud
+        run: ./oigusallikad kontroll -t -varske -vahemalu -
