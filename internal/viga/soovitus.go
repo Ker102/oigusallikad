@@ -29,7 +29,7 @@ func Soovitus(err error) string {
 	case Kattesaamatu:
 		return "Allikas ei ole hetkel kättesaadav. Proovi mõne aja pärast uuesti; kui viga kordub päevi, käivita `oigusallikad kontroll -t` ja vaata allpool olevaid samme."
 	case Soltuvus:
-		return "Paigalda puuduv abiprogramm (README: Paigaldamine)."
+		return "Paigalda puuduv abiprogramm (docs/juhend.md: Paigaldamine)."
 	}
 	// StruktuurMuutunud, Blokeeritud ja ootamatud vead: tööriist vajab tõenäoliselt parandust.
 	var b strings.Builder
@@ -45,7 +45,7 @@ func Soovitus(err error) string {
 	b.WriteString("1) uuenda tööriista: go install github.com/Ker102/oigusallikad/cmd/oigusallikad@latest\n")
 	b.WriteString("2) vaata, kas viga on juba teada või parandatud: " + Hoidla + "/issues\n")
 	b.WriteString("3) käivita `oigusallikad kontroll -t`, et näha, milline allikas on katki\n")
-	b.WriteString("4) kui parandust pole: `oigusallikad veateade` koostab GitHubi probleemi (issue) eeltäidetud kirjelduse; GitHubi kasutajaga saab saata ka paranduse (pull request) – juhend README-s (\"Kui allikas muutub\")\n")
+	b.WriteString("4) kui parandust pole: `oigusallikad veateade` koostab GitHubi probleemi (issue) eeltäidetud kirjelduse; GitHubi kasutajaga saab saata ka paranduse (pull request) – juhend failis docs/juhend.md (\"Kui allikas muutub\")\n")
 	b.WriteString("Seni kasuta sama dokumendi jaoks muud allikat (nt brauser või üldine veebikaabits) ja ütle kasutajale, kust tekst pärineb.")
 	return b.String()
 }
